@@ -1,0 +1,31 @@
+<%= render 'home/new_answer_form'%>
+
+<div class="container">
+    <div class="lead well">
+        <div class="media">
+            <img src="<%= @question.gravatar%>" class="mr-3" alt="...">
+            <div class="media-body">
+                <h5 class="mt-0"><%= @question.email%> asked...</h5>
+                <%= @question.body%>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-outline-success" type="button" data-toggle="modal" data-target="#new-answer-form">Answer</button>
+    <% @question.answers.each do |answer|%>
+        <div class="media">
+            <img src="http://gravatar.com/avatar/424242" class="mr-3" alt="...">
+            <div class="media-body">
+                <h5 class="mt-0"><%= answer.email%> answered...</h5>
+                <div class="align-self-start"> <%= time_ago_in_words answer.created_at %> ago </div>
+                <%= answer.body %>
+            </div>
+        </div>
+    <%end%>
+
+    <% if @question.answers.empty? %>
+        <div class="alert alert-info">
+        No Answers yet!! be the first tot answer..
+        </div>
+    <% end %>
+</div>

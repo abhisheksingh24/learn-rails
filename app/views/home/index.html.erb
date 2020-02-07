@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>It Works</h1>
+    <ul class="container list-unstyled">
+        <% @questions.each do |q| %>
+            <li class="media">
+                <img src= <%= q.gravatar%> class="media-object mr-3" alt="...">
+                <div class="media-body">
+                    <h5 class="media-heading mt-0"> <%= q.email%> asks...</h5>
+                    <div class="align-self-start"> <%= time_ago_in_words q.created_at %> ago </div>
+                    <div class="align-self-end"><%= q.body%> </div>
+                </div>
+                <a href="<%= question_path(q)%>" class="btn btn-primary">View Answers</a>
+                
+            </li>
+        <%end%>
+
+    </ul>
+
+    <% if @questions.empty? %>
+            <div class="alert alert-info">
+            No Questions yet!! Ask One.??
+            </div>
+    <% end %>
+
+</div>
